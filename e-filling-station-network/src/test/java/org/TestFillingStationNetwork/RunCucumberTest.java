@@ -1,4 +1,4 @@
-package org.example;
+package org.TestFillingStationNetwork;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
