@@ -14,7 +14,7 @@ import java.util.List;
 public class StepDefinitionsStandort {
     private Standort standort;
 
-    @When("der Betreiber einen neuen Standort {string} erstellt mit ID {string} an Adresse {string} und folgenden Ladepunkten")
+    @When("der Betreiber einen neuen Standort {string} erstellt mit ID {word} an Adresse {string} und folgenden Ladepunkten")
     public void WennBetreiberStandortErstellt(String name, String id, String adresse, DataTable ladePunkteTable) {
         // Convert datatable to list of list of strings and remove
         List<List<String>> ladepunkteInput = ladePunkteTable.asLists();
@@ -33,8 +33,8 @@ public class StepDefinitionsStandort {
         standort = new Standort(id, name, adresse, ladepunkte);
     }
 
-    @Then("hat der neue Standort {string} die ID {string}, Adresse {string} und folgende Ladepunkte")
-    public void theScenarioPasses(String name, String id, String adresse, DataTable ladePunkteTable) {
+    @Then("hat der neue Standort {string} die ID {word}, Adresse {string} und folgende Ladepunkte")
+    public void HatNeuerStandortRichtigeWerte(String name, String id, String adresse, DataTable ladePunkteTable) {
         List<List<String>> ladepunkteInput = ladePunkteTable.asLists();
         ArrayList<Ladepunkt> ladepunkte = new ArrayList<>();
 
@@ -58,5 +58,4 @@ public class StepDefinitionsStandort {
             assertThat(ladepunkte.get(i).getStatus()).isEqualTo(standort.GetLadepunkte().get(i).getStatus());
         }
     }
-
 }
