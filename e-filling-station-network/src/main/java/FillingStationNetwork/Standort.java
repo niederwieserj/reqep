@@ -22,7 +22,7 @@ public class Standort {
         this.StandortId = StandortId;
         this.Name = Name;
         this.Adresse = Adresse;
-        this.Ladepunkte = new ArrayList<Ladepunkt>();
+        this.Ladepunkte = Ladepunkte;
     }
 
     /**
@@ -37,7 +37,19 @@ public class Standort {
      * Ladepunkte auflisten
      * @return Liste der Ladepunkte
      */
-    ArrayList<Ladepunkt> GetLadepunkte() {
+    public ArrayList<Ladepunkt> GetLadepunkte() {
         return Ladepunkte;
+    }
+
+    public String getStandortId() {
+        return StandortId;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getAdresse() {
+        return Adresse;
     }
 }

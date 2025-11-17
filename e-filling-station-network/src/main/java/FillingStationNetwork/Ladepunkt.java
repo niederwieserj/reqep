@@ -7,6 +7,12 @@ public class Ladepunkt {
     private ChargingMode chargingMode;
     private ChargingPointStatus status;
 
+    public Ladepunkt(String ladepunktId, ChargingMode chargingMode, ChargingPointStatus status) {
+        this.ladepunktId = ladepunktId;
+        this.chargingMode = chargingMode;
+        this.status = status;
+    }
+
     public boolean IsAvailable () {
         return status == ChargingPointStatus.FREE;
     }
@@ -17,6 +23,18 @@ public class Ladepunkt {
 
     public void SetStatus(ChargingPointStatus status) {
         this.status = status;
+    }
+
+    public String getLadepunktId() {
+        return ladepunktId;
+    }
+
+    public ChargingMode getChargingMode() {
+        return chargingMode;
+    }
+
+    public ChargingPointStatus getStatus() {
+        return status;
     }
 
     public enum ChargingMode {
