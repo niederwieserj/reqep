@@ -5,7 +5,7 @@ import jdk.jshell.spi.ExecutionControl;
 /**
  * Ladepunkt
  */
-public class Ladepunkt {
+public class    Ladepunkt {
     /** Unique ID of the Ladepunkt */
     private String ladepunktId;
     /** Supported charging mode of this Ladepunkt */
