@@ -15,13 +15,14 @@ Feature: Standorte erstellen
     Then ist Ladepunkt available
 
   Scenario: Neuen Standort erstellen
-    When der Betreiber einen neuen Standort "Standort 1" erstellt mit ID SID-0001 an Adresse "Musterstrasse 1, 1010 Wien" und folgenden Ladepunkten
+    When der Betreiber einen neuen Standort "Standort 1" erstellt mit ID SID-0001 an Adresse "Musterstrasse 1, 1010 Wien" und folgenden Ladepunkten und folgender Beschreibung "Toller Standort"
     | LadepunktID | ChargingMode | Status         |
     | LP0001      | AC           | FREE           |
     | LP0002      | DC           | BUSY           |
     | LP0003      | DC           | OUT_OF_ORDER   |
-    Then hat der neue Standort "Standort 1" die ID SID-0001, Adresse "Musterstrasse 1, 1010 Wien" und folgende Ladepunkte
+    Then hat der neue Standort "Standort 1" die ID SID-0001, Adresse "Musterstrasse 1, 1010 Wien" und folgende Ladepunkte und folgender Beschreibung "Toller Standort"
     | LadepunktID | ChargingMode | Status         |
     | LP0001      | AC           | FREE           |
     | LP0002      | DC           | BUSY           |
     | LP0003      | DC           | OUT_OF_ORDER   |
+

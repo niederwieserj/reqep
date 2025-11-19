@@ -16,19 +16,24 @@ public class Standort {
     private String Adresse;
     /** Ladepunkte of this Standort */
     private ArrayList<Ladepunkt> Ladepunkte;
+    /** Beschreibung of this Standort*/
+    private String Beschreibung;
+
 
     /**
-     * Konstruktor
+     Konstruktor
      * @param StandortId Unique ID of the Standort
      * @param Name Name of the Standort
      * @param Adresse Address of the Standort
      * @param Ladepunkte Ladepunkte of this Standort
+     * @param Beschreibung Beschreibung of this Standort
      */
-    public Standort(String StandortId, String Name, String Adresse,  ArrayList<Ladepunkt> Ladepunkte) {
+    public Standort(String StandortId, String Name, String Adresse,  ArrayList<Ladepunkt> Ladepunkte, String Beschreibung) {
         this.StandortId = StandortId;
         this.Name = Name;
         this.Adresse = Adresse;
         this.Ladepunkte = Ladepunkte;
+        this.Beschreibung = Beschreibung;
     }
 
     /**
@@ -58,5 +63,9 @@ public class Standort {
 
     public String getAdresse() {
         return Adresse;
+    }
+
+    public String getBeschreibung() {
+        return Beschreibung;
     }
 }

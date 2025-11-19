@@ -14,8 +14,8 @@ import java.util.List;
 public class StepDefinitionsStandort {
     private Standort standort;
 
-    @When("der Betreiber einen neuen Standort {string} erstellt mit ID {word} an Adresse {string} und folgenden Ladepunkten")
-    public void WennBetreiberStandortErstellt(String name, String id, String adresse, DataTable ladePunkteTable) {
+    @When("der Betreiber einen neuen Standort {string} erstellt mit ID {word} an Adresse {string} und folgenden Ladepunkten und folgender Beschreibung {string}")
+    public void WennBetreiberStandortErstellt(String name, String id, String adresse,String beschreibung, DataTable ladePunkteTable) {
         // Convert datatable to list of list of strings and remove
         List<List<String>> ladepunkteInput = ladePunkteTable.asLists();
 
@@ -30,11 +30,11 @@ public class StepDefinitionsStandort {
             ladepunkte.add(new Ladepunkt(ladepunkteInput.get(i).get(0), chargingMode, chargingPointStatus));
         }
 
-        standort = new Standort(id, name, adresse, ladepunkte);
+        standort = new Standort(id, name, adresse, ladepunkte, beschreibung);
     }
 
-    @Then("hat der neue Standort {string} die ID {word}, Adresse {string} und folgende Ladepunkte")
-    public void HatNeuerStandortRichtigeWerte(String name, String id, String adresse, DataTable ladePunkteTable) {
+    @Then("hat der neue Standort {string} die ID {word}, Adresse {string} und folgende Ladepunkte und folgender Beschreibung {string}")
+    public void HatNeuerStandortRichtigeWerte(String name, String id, String adresse, String beschreibung, DataTable ladePunkteTable) {
         List<List<String>> ladepunkteInput = ladePunkteTable.asLists();
         ArrayList<Ladepunkt> ladepunkte = new ArrayList<>();
 
@@ -50,6 +50,7 @@ public class StepDefinitionsStandort {
         assertThat(name).isEqualTo(standort.getName());
         assertThat(id).isEqualTo(standort.getStandortId());
         assertThat(adresse).isEqualTo(standort.getAdresse());
+        assertThat(beschreibung).isEqualTo(standort.getBeschreibung());
         assertThat(ladepunkte.size()).isEqualTo(standort.GetLadepunkte().size());
 
         for (int i = 0; i < ladepunkte.size(); i++) {
