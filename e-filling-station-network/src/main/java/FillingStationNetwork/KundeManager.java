@@ -44,6 +44,15 @@ public class KundeManager {
         }
     }
 
+    public void zeigeGuthaben(String kundennummer) {
+        Konto konto = konten.get(kundennummer);
+        if (konto != null) {
+            System.out.println("Das Guthaben des Kunden mit der Kundennummer " + kundennummer + " beträgt: " + konto.getGuthaben());
+        } else {
+            System.out.println("Kunde nicht gefunden.");
+        }
+    }
+
     public boolean existsByEmail(String email) {
         return konten.values().stream()
                 .anyMatch(k -> k.getKunde().getEmail().equals(email));
