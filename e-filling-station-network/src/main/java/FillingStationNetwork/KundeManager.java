@@ -29,6 +29,21 @@ public class KundeManager {
         }
     }
 
+    public void zeigeLadevorgaenge(String kundennummer) {
+        Konto konto = konten.get(kundennummer);
+        if (konto != null) {
+            String[] ladevorgaenge = konto.getLadevorgaenge();  // Ladevorgänge aus dem Konto abrufen
+            System.out.println("Ladevorgänge für Kundennummer " + kundennummer + ":");
+            for (String ladevorgang : ladevorgaenge) {
+                if (ladevorgang != null) {
+                    System.out.println(ladevorgang);
+                }
+            }
+        } else {
+            System.out.println("Kunde nicht gefunden.");
+        }
+    }
+
     public boolean existsByEmail(String email) {
         return konten.values().stream()
                 .anyMatch(k -> k.getKunde().getEmail().equals(email));

@@ -6,6 +6,7 @@ public class Konto {
     private String passwort;
     private double guthaben; // Neues Feld für Guthaben
     private String[] bewegungsdaten; // Neues Feld für Bewegungsdaten
+    private String[] ladevorgaenge;
 
     public Konto(Kunde kunde, String kundennummer, String passwort) {
         this.kunde = kunde;
@@ -13,6 +14,7 @@ public class Konto {
         this.passwort = passwort;
         this.guthaben = 0.0; // Anfangsguthaben auf 0 setzen
         this.bewegungsdaten = new String[10]; // Maximale Anzahl von Transaktionen, die wir speichern möchten
+        this.ladevorgaenge = new String[10];  // Maximale Anzahl von Ladevorgängen, die wir speichern möchten
     }
 
     public Kunde getKunde() {
@@ -44,4 +46,19 @@ public class Konto {
             }
         }
     }
+
+    public String[] getLadevorgaenge() {
+        return ladevorgaenge;
+    }
+
+    public void addLadevorgang(String ladevorgang) {
+        // Ladevorgang hinzufügen
+        for (int i = 0; i < ladevorgaenge.length; i++) {
+            if (ladevorgaenge[i] == null) {
+                ladevorgaenge[i] = ladevorgang;
+                break;
+            }
+        }
+    }
+
 }
