@@ -70,6 +70,14 @@ public class KundeManager {
         return konto;
     }
 
+    public Rechnung erstelleRechnung(String kundennummer) {
+        Konto konto = konten.get(kundennummer);
+        if (konto != null) {
+            return konto.erstelleRechnung();
+        }
+        return null;
+    }
+
 
     public Konto getByKundennummer(String id) {
         return konten.get(id);

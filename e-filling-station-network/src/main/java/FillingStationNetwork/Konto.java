@@ -1,5 +1,8 @@
 package FillingStationNetwork;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Konto {
     private Kunde kunde;
     private String kundennummer;
@@ -7,6 +10,7 @@ public class Konto {
     private double guthaben; // Neues Feld für Guthaben
     private String[] bewegungsdaten; // Neues Feld für Bewegungsdaten
     private String[] ladevorgaenge;
+    private List<Rechnung> rechnungen;
 
     public Konto(Kunde kunde, String kundennummer, String passwort) {
         this.kunde = kunde;
@@ -15,6 +19,7 @@ public class Konto {
         this.guthaben = 0.0; // Anfangsguthaben auf 0 setzen
         this.bewegungsdaten = new String[10]; // Maximale Anzahl von Transaktionen, die wir speichern möchten
         this.ladevorgaenge = new String[10];  // Maximale Anzahl von Ladevorgängen, die wir speichern möchten
+        this.rechnungen = new ArrayList<>();
     }
 
     public Kunde getKunde() {
@@ -60,5 +65,29 @@ public class Konto {
             }
         }
     }
+
+    public List<Rechnung> getRechnungen() {
+        return rechnungen;
+    }
+
+    public Rechnung erstelleRechnung() {
+        double betrag = 0.0;
+        List<String> abgeschlosseneLadevorgaenge = new ArrayList<>();
+        for (String ladevorgang : ladevorgaenge) {
+            if (ladevorgang != null) {
+                abgeschlosseneLadevorgaenge.add(ladevorgang);
+                betrag += 20.0; // Beispielpreis pro Ladevorgang
+            }
+        }
+
+        if (!abgeschlosseneLadevorgaenge.isEmpty()) {
+            String rechnungsnummer = "R" + System.currentTimeMillis();
+            Rechnung rechnung = new Rechnung(rechnungsnummer, kundennummer, abgeschlosseneLadevorgaenge, betrag);
+            rechnungen.add(rechnung);
+            return rechnung;
+        }
+        return null;  // Keine Ladevorgänge, keine Rechnung
+    }
+
 
 }
