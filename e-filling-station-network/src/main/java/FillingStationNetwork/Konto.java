@@ -1,18 +1,18 @@
 package FillingStationNetwork;
 
-import java.time.LocalDate;
-
 public class Konto {
     private Kunde kunde;
     private String kundennummer;
     private String passwort;
-    private LocalDate erstelltAm;
+    private double guthaben; // Neues Feld für Guthaben
+    private String[] bewegungsdaten; // Neues Feld für Bewegungsdaten
 
     public Konto(Kunde kunde, String kundennummer, String passwort) {
         this.kunde = kunde;
         this.kundennummer = kundennummer;
         this.passwort = passwort;
-        this.erstelltAm = LocalDate.now();
+        this.guthaben = 0.0; // Anfangsguthaben auf 0 setzen
+        this.bewegungsdaten = new String[10]; // Maximale Anzahl von Transaktionen, die wir speichern möchten
     }
 
     public Kunde getKunde() {
@@ -23,11 +23,25 @@ public class Konto {
         return kundennummer;
     }
 
-    public String getPasswort() {
-        return passwort;
+    public double getGuthaben() {
+        return guthaben;
     }
 
-    public LocalDate getErstelltAm() {
-        return erstelltAm;
+    public void setGuthaben(double guthaben) {
+        this.guthaben = guthaben;
+    }
+
+    public String[] getBewegungsdaten() {
+        return bewegungsdaten;
+    }
+
+    public void addBewegung(String transaktion) {
+        // Füge eine neue Transaktion in das Bewegungsdaten-Array ein
+        for (int i = 0; i < bewegungsdaten.length; i++) {
+            if (bewegungsdaten[i] == null) {
+                bewegungsdaten[i] = transaktion;
+                break;
+            }
+        }
     }
 }
