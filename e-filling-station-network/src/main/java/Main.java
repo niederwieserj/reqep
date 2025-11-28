@@ -19,7 +19,7 @@ public class Main {
         if (admin.login("admin", "admin123")) {
             System.out.println("Admin-Login erfolgreich");
         } else {
-            System.out.println("Admin-Login fehlgeschlagen");
+            System.out.println("Admin-Login fehlgeschlagen") ;
         }
     }
 }
