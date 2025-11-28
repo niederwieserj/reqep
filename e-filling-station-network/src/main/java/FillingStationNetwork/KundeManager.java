@@ -8,6 +8,27 @@ public class KundeManager {
     private Map<String, Konto> konten = new HashMap<>();
     private int nummerCounter = 1;
 
+    public KundeManager() {
+        this.konten = new HashMap<>();
+    }
+
+    // Konstruktor mit Map
+    public KundeManager(Map<String, Konto> konten) {
+        this.konten = konten;
+    }
+
+    public void zeigeKundendaten(String kundennummer) {
+        Konto konto = konten.get(kundennummer);
+        if (konto != null) {
+            Kunde kunde = konto.getKunde();  // Kunde aus dem Konto abrufen
+            System.out.println("Kundennummer: " + kunde.getKundennummer());
+            System.out.println("Name: " + kunde.getVorname() + " " + kunde.getNachname());
+            System.out.println("Email: " + kunde.getEmail());
+        } else {
+            System.out.println("Kunde nicht gefunden.");
+        }
+    }
+
     public boolean existsByEmail(String email) {
         return konten.values().stream()
                 .anyMatch(k -> k.getKunde().getEmail().equals(email));

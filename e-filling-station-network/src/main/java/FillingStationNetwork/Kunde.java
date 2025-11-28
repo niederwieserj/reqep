@@ -8,11 +8,11 @@ public class Kunde {
     private String email;
     private String kundennummer;
 
-    public Kunde(String vorname, String nachname, String email) {
+    public Kunde(String vorname, String nachname, String email, String kundennummer) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.email = email;
-        this.kundennummer = UUID.randomUUID().toString();
+        this.kundennummer = kundennummer;
     }
 
     public String getKundennummer() {
