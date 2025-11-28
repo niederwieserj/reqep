@@ -18,11 +18,13 @@ public class KundeManager {
             return null;
         }
 
-        String kundennummer = "K" + String.format("%04d", nummerCounter++);
-        Konto konto = new Konto(kunde, kundennummer, passwort);
-        konten.put(kundennummer, konto);
+        String kundennummer = kunde.getKundennummer();  // Kundennummer wird direkt aus dem Kunde-Objekt verwendet
+
+        Konto konto = new Konto(kunde, kundennummer, passwort);  // Konto mit der Kundennummer aus dem 'Kunde' Objekt erstellen
+        konten.put(kundennummer, konto);  // Die Kundennummer als Schlüssel im 'konten' Map speichern
         return konto;
     }
+
 
     public Konto getByKundennummer(String id) {
         return konten.get(id);

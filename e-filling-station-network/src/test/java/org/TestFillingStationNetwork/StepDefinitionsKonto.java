@@ -41,6 +41,11 @@ public class StepDefinitionsKonto {
 
         erzeugtesKonto = kundeManager.createKonto(kunde, row.get("Passwort"));
     }
+    @Then("die Kundennummer des neuen Kunden sollte nicht leer sein")
+    public void dieKundennummerDesNeuenKundenSollteNichtLeerSein() {
+        assertThat(erzeugtesKonto.getKunde().getKundennummer()).isNotNull();
+        assertThat(erzeugtesKonto.getKunde().getKundennummer()).isNotEmpty();
+    }
 
     @Then("wird ein neues Kundenkonto erstellt")
     public void KontoWirdErstellt() {
