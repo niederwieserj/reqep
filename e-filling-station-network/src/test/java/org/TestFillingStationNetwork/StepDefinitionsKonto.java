@@ -1,11 +1,11 @@
 package org.TestFillingStationNetwork;
 
+import FillingStationNetwork.*;
 import io.cucumber.java.en.*;
 import io.cucumber.datatable.DataTable;
 
 import static org.assertj.core.api.Assertions.*;
 
-import FillingStationNetwork.*;
 import java.util.Map;
 
 public class StepDefinitionsKonto {
@@ -23,8 +23,9 @@ public class StepDefinitionsKonto {
     public void KundeExistiertMitEmail(String email) {
         kundeManager = new KundeManager();
 
-        Kunde kunde = new Kunde("Test", "User", email);
-        kundeManager.createKonto(kunde, "pw");
+        // Hier wird nun eine manuelle Kundennummer übergeben
+        Kunde kunde = new Kunde("Test", "User", email, "K1234");  // Manuelle Kundennummer
+        erzeugtesKonto = kundeManager.createKonto(kunde, "pw");
 
         assertThat(kundeManager.existsByEmail(email)).isTrue();
     }
@@ -33,13 +34,21 @@ public class StepDefinitionsKonto {
     public void KundeLegtKontoAn(DataTable dataTable) {
         Map<String, String> row = dataTable.asMaps().get(0);
 
+        // Hier wird auch wieder die manuelle Kundennummer übergeben
         Kunde kunde = new Kunde(
                 row.get("Vorname"),
                 row.get("Nachname"),
-                row.get("E-Mail")
+                row.get("E-Mail"),
+                "K1234"  // Manuelle Kundennummer
         );
 
         erzeugtesKonto = kundeManager.createKonto(kunde, row.get("Passwort"));
+    }
+
+    @Then("die Kundennummer des neuen Kunden sollte nicht leer sein")
+    public void dieKundennummerDesNeuenKundenSollteNichtLeerSein() {
+        assertThat(erzeugtesKonto.getKunde().getKundennummer()).isNotNull();
+        assertThat(erzeugtesKonto.getKunde().getKundennummer()).isNotEmpty();
     }
 
     @Then("wird ein neues Kundenkonto erstellt")
