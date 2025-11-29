@@ -28,7 +28,7 @@ Feature: Ladepunkte eines Standorts abrufen
     When ich die verfügbaren Ladepunkte abfrage für Standort "ST1"
     Then gibt es 0 verfügbare Ladepunkte
 
-  Scenario: Ein verfügbarer Ladepunkt wird nicht falsch eingeschlossen
+  Scenario: Ein falscher Ladepunkt wird nicht gefunden
     Given ein Ladepunkt-Manager mit Ladepunkten existiert
     When ich die verfügbaren Ladepunkte abfrage für Standort "ST1"
     Then beinhalten die verfügbaren Ladepunkte nicht die ID "UNKNOWN"
