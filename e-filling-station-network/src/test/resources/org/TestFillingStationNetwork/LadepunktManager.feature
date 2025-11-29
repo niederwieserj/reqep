@@ -1,3 +1,4 @@
+# Story K2
 Feature: Ladepunkte eines Standorts abrufen
   Um Informationen über die Ladestationen eines Standorts zu erhalten,
   soll der Ladepunkt-Manager alle Ladepunkte eines Standorts zurückgeben.

@@ -52,6 +52,13 @@ public class Konto {
         }
     }
 
+    public void addTopUp(double amount) {
+        if (amount > 0) {
+            guthaben += amount;
+            addBewegung("Aufladung: +" + amount + " EUR");
+        }
+    }
+
     public String[] getLadevorgaenge() {
         return ladevorgaenge;
     }
