@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StandortManager {
-    private List<Standort> standorte = new ArrayList<Standort>();
+    private ArrayList<Standort> standorte = new ArrayList<Standort>();
 
     public void AddStandort(Standort standort) {
         standorte.add(standort);
@@ -16,7 +16,7 @@ public class StandortManager {
         ).findFirst().orElse(null);
     }
 
-    public List<Standort> GetStandorte() {
+    public ArrayList<Standort> GetStandorte() {
         return standorte;
     }
 }
