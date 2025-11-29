@@ -1,6 +1,7 @@
 package FillingStationNetwork;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rechnung {
@@ -10,6 +11,7 @@ public class Rechnung {
     private List<String> ladevorgaenge;
     private String status; // z.B. "Bezahlt", "Offen"
     private String kundennummer; // Hier wird die Kundennummer gespeichert
+    private List<Rechnungsposten> posten = new ArrayList<>();
 
     public Rechnung(String rechnungsnummer, String kundennummer, List<String> ladevorgaenge, double betrag) {
         this.rechnungsnummer = rechnungsnummer;
@@ -47,4 +49,13 @@ public class Rechnung {
     public String getKundennummer() {
         return kundennummer;  // Hier geben wir die Kundennummer zurück
     }
+
+    public void addRechnungsposten(Rechnungsposten rp) {
+        posten.add(rp);
+    }
+
+    public List<Rechnungsposten> getPosten() {
+        return posten;
+    }
+
 }

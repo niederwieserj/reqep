@@ -1,6 +1,7 @@
 package FillingStationNetwork;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class KundeManager {
@@ -82,4 +83,25 @@ public class KundeManager {
     public Konto getByKundennummer(String id) {
         return konten.get(id);
     }
+
+    public Rechnung getRechnung(String kundennummer, String rechnungsnummer) {
+        Konto k = konten.get(kundennummer);
+        if (k == null) return null;
+
+        return k.getRechnungen().stream()
+                .filter(r -> r.getRechnungsnummer().equals(rechnungsnummer))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Aufladung> getAufladungen(String kundennummer){
+        Konto k = konten.get(kundennummer);
+        if (k == null) return null;
+        return k.getAufladungen();
+    }
+
+    public void addKunde(Kunde k, Konto konto) {
+        konten.put(k.getKundennummer(), konto);
+    }
+
 }
