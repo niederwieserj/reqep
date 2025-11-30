@@ -11,6 +11,7 @@ public class Konto {
     private String[] bewegungsdaten; // Neues Feld für Bewegungsdaten
     private String[] ladevorgaenge;
     private List<Rechnung> rechnungen;
+    private List<Aufladung> aufladungen = new ArrayList<>();
 
     public Konto(Kunde kunde, String kundennummer, String passwort) {
         this.kunde = kunde;
@@ -96,5 +97,16 @@ public class Konto {
         return null;  // Keine Ladevorgänge, keine Rechnung
     }
 
+    public void addAufladung(double amount) {
+        if (amount > 0) {
+            this.guthaben += amount;
+            Aufladung a = new Aufladung(amount);
+            aufladungen.add(a);
+            addBewegung("Aufladung: +" + amount + " EUR");
+        }
+    }
 
+    public List<Aufladung> getAufladungen() {
+        return aufladungen;
+    }
 }
