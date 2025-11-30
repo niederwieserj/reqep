@@ -31,7 +31,18 @@ public class Ladevorgang {
 
     public void CloseSession() {
 
+        this.end = new Date();
+
+
+        if (this.start != null && this.end != null) {
+            long diffMillis = this.end.getTime() - this.start.getTime();
+            this.dauerMinuten = (int) (diffMillis / (1000 * 60));
+            if (this.dauerMinuten < 0) {
+                this.dauerMinuten = 0; // Safety, falls irgendwas schiefgeht
+            }
+        }
     }
+
 
     public String getLadeVorgangId() {
         return ladeVorgangId;
