@@ -43,4 +43,38 @@ public class RechnungsManager {
 
         return result;
     }
+
+    public double berechneUmsatzFuerStandort(
+            Konto konto,
+            LocalDate von,
+            LocalDate bis,
+            String standortName
+    ) {
+        double umsatz = 0.0;
+
+        for (Rechnung r : konto.getRechnungen()) {
+
+            boolean okDatum =
+                    (von == null || !r.getErstelldatum().isBefore(von))
+                            && (bis == null || !r.getErstelldatum().isAfter(bis));
+
+            if (!okDatum) {
+                continue;
+            }
+
+            for (Rechnungsposten p : r.getPosten()) {
+
+                boolean okStandort =
+                        (standortName == null)
+                                || p.getStandortName().equals(standortName);
+
+                if (okStandort) {
+                    umsatz += p.getPreis();
+                }
+            }
+        }
+
+        return umsatz;
+    }
+
 }
