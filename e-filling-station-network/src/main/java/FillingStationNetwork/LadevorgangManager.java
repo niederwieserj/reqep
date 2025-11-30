@@ -15,8 +15,11 @@ public class LadevorgangManager {
     }
 
     public void StopLadeVorgang() {
-
+        if (ladevorgang != null) {
+            ladevorgang.CloseSession();
+        }
     }
+
 
     public Ladevorgang getLadevorgang() {
         return ladevorgang;

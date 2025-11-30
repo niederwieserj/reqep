@@ -51,4 +51,17 @@ public class StepDefinitionsLadevorgang {
     public void sollte_der_startzeitpunkt_gesetzt_sein() {
         assertThat(result.getStart()).isNotNull();
     }
+
+    @When("ich den Ladevorgang stoppe")
+    public void ich_den_ladevorgang_stoppe() {
+        manager.StopLadeVorgang();
+        // result zeigt weiterhin auf den gleichen Ladevorgang im Manager
+        result = manager.getLadevorgang();
+    }
+
+    @Then("sollte der Endzeitpunkt gesetzt sein")
+    public void sollte_der_endzeitpunkt_gesetzt_sein() {
+        assertThat(result.getEnd()).isNotNull();
+    }
+
 }
