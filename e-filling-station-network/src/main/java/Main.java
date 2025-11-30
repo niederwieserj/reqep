@@ -10,9 +10,6 @@ public class Main {
 
         System.out.println("=== E-Filling Station Network DEMO ===");
 
-        // --------------------------------------------------------------------
-        // 1) Standort + Ladepunkte anlegen (StandortManager + LadepunktManager)
-        // --------------------------------------------------------------------
         StandortManager standortManager = new StandortManager();
 
         ArrayList<Ladepunkt> ladepunkte = new ArrayList<>();
@@ -48,7 +45,7 @@ public class Main {
             System.out.println("  Available: " + lp.getLadepunktId());
         }
 
-        // ⚠ BUG in LadepunktManager.SetLadepunktStatus -> wir ändern den Status direkt:
+
         System.out.println("\n-- Status von LP-0002 direkt ändern (ohne LadepunktManager.SetLadepunktStatus) --");
         for (Ladepunkt lp : alleLadepunkte) {
             if (lp.getLadepunktId().equals("LP-0002")) {
@@ -61,9 +58,6 @@ public class Main {
             }
         }
 
-        // ------------------------
-        // 2) Admin-Login testen
-        // ------------------------
         System.out.println("\n-- Admin-Login --");
         Admin admin = new Admin("admin", "admin123");
         System.out.println("Login admin/admin123: " +
@@ -71,9 +65,6 @@ public class Main {
         System.out.println("Login admin/falsch  : " +
                 (admin.login("admin", "falsch") ? "ERFOLGREICH" : "FEHLGESCHLAGEN"));
 
-        // ---------------------------------------
-        // 3) Kunde & Konto anlegen (Konto-Story)
-        // ---------------------------------------
         System.out.println("\n-- Kunde & Konto anlegen --");
         KundeManager kundeManager = new KundeManager();
 
@@ -87,15 +78,11 @@ public class Main {
             System.out.println("Konto konnte nicht erstellt werden.");
         }
 
-        // Versuch zweites Konto mit derselben E-Mail
         Kunde dupKunde = new Kunde("Maxine", "Muster", "max@muster.com", "K9999");
         Konto dupKonto = kundeManager.createKonto(dupKunde, "pw2");
         System.out.println("Zweites Konto mit gleicher E-Mail wurde "
                 + (dupKonto == null ? "NICHT " : "") + "erstellt.");
 
-        // ---------------------------------------------------
-        // 4) Guthaben, Aufladungen & Bewegungsdaten testen
-        // ---------------------------------------------------
         System.out.println("\n-- Guthaben & Aufladungen --");
         konto.addAufladung(50.0);
         konto.addAufladung(20.0);
@@ -115,9 +102,6 @@ public class Main {
             System.out.println("  " + a.getZeitpunkt() + " -> " + a.getBetrag() + " EUR");
         }
 
-        // ---------------------------------------------------
-        // 5) Kundendaten & Ladevorgänge anzeigen
-        // ---------------------------------------------------
         System.out.println("\n-- Kundendaten & Ladevorgänge --");
         kundeManager.zeigeKundendaten(konto.getKundennummer());
 
@@ -131,9 +115,7 @@ public class Main {
         System.out.println("Ladevorgänge aus KundeManager:");
         kundeManager.zeigeLadevorgaenge(konto.getKundennummer());
 
-        // ---------------------------------------------------
-        // 6) LadevorgangManager – Start eines Ladevorgangs
-        // ---------------------------------------------------
+
         System.out.println("\n-- Ladevorgang starten --");
         LadevorgangManager lvManager = new LadevorgangManager();
         lvManager.StartLadeVorgang(
@@ -148,9 +130,6 @@ public class Main {
                 + " | Mode=" + lv.getChargingMode()
                 + " | Start=" + lv.getStart());
 
-        // ---------------------------------------------------
-        // 7) Rechnungen erstellen, ansehen, filtern, Details
-        // ---------------------------------------------------
         System.out.println("\n-- Rechnungen --");
         Rechnung rechnungAuto = kundeManager.erstelleRechnung(konto.getKundennummer());
         if (rechnungAuto != null) {
@@ -222,9 +201,6 @@ public class Main {
             System.out.println("  Gefilterte Rechnung: " + r.getRechnungsnummer());
         }
 
-        // ---------------------------------------------------
-        // 8) Aufladungen über KundeManager abrufen
-        // ---------------------------------------------------
         System.out.println("\n-- Aufladungen über KundeManager --");
         List<Aufladung> auflFromManager = kundeManager.getAufladungen(konto.getKundennummer());
         if (auflFromManager != null) {

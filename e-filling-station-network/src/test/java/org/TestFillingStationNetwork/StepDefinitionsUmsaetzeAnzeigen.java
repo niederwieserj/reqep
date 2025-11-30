@@ -18,17 +18,14 @@ public class StepDefinitionsUmsaetzeAnzeigen {
 
         rm = new RechnungsManager();
 
-        // Dummy-Kunde + Konto
         Kunde k = new Kunde("Bruno", "Betreiber", "betreiber@test.com", "K500");
         konto = new Konto(k, "K500", "pw");
 
-        // Erste Rechnung mit einem Posten an diesem Standort
         Rechnung r1 = new Rechnung("R1000", "K500", List.of("LV-1"), 50.0);
         r1.addRechnungsposten(
                 new Rechnungsposten("LV-1", standortName, "LP-1", 10.0, 30, 50.0)
         );
 
-        // Zweite Rechnung mit einem Posten an gleichem Standort
         Rechnung r2 = new Rechnung("R2000", "K500", List.of("LV-2"), 30.0);
         r2.addRechnungsposten(
                 new Rechnungsposten("LV-2", standortName, "LP-2", 8.0, 20, 30.0)
