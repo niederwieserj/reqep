@@ -1,7 +1,6 @@
 package FillingStationNetwork;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StandortManager {
     private ArrayList<Standort> standorte = new ArrayList<Standort>();
@@ -18,5 +17,17 @@ public class StandortManager {
 
     public ArrayList<Standort> GetStandorte() {
         return standorte;
+    }
+
+    public ArrayList<Standort> GetStandorteMitAktivemTarif() {
+        ArrayList<Standort> result = new ArrayList<>();
+
+        for (Standort s : standorte) {
+            if (s.GetActiveTarifVersion() != null) {
+                result.add(s);
+            }
+        }
+
+        return result;
     }
 }
