@@ -30,18 +30,22 @@ public class Ladevorgang {
     }
 
     public void CloseSession() {
-
+        // Endzeit auf jetzt setzen
         this.end = new Date();
 
-
+        // Dauer in Minuten berechnen, falls Start gesetzt ist
         if (this.start != null && this.end != null) {
             long diffMillis = this.end.getTime() - this.start.getTime();
-            this.dauerMinuten = (int) (diffMillis / (1000 * 60));
+            this.dauerMinuten = (int) Math.ceil(diffMillis / 60000.0);
+
             if (this.dauerMinuten < 0) {
-                this.dauerMinuten = 0; // Safety, falls irgendwas schiefgeht
+                this.dauerMinuten = 0; // Safety
             }
+        } else {
+            this.dauerMinuten = 0;
         }
     }
+
 
 
     public String getLadeVorgangId() {

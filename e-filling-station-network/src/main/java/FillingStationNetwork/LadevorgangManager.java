@@ -21,6 +21,7 @@ public class LadevorgangManager {
     }
 
 
+
     public Ladevorgang getLadevorgang() {
         return ladevorgang;
     }
