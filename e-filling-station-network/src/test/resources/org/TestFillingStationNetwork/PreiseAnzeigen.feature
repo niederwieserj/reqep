@@ -1,3 +1,4 @@
+# Story K3
 Feature: K3 Preise anzeigen
   Als Kunde möchte ich die Preise der Standorte sehen,
   um den günstigsten Ladepreis zu finden.

@@ -1,3 +1,4 @@
+# Story B15
 Feature: B15 Umsätze anzeigen
   Als Betreiber möchte ich Umsätze anzeigen können,
   um zu wissen, wie viel Einnahmen ein Standort innerhalb eines bestimmten Zeitraums generiert hat.
